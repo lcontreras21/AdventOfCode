@@ -6,21 +6,9 @@ import (
 	"os"
 	"regexp"
 	"strconv"
+    "AdventOfCode/utils"
 )
 
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
 
 func Day_1_Part_1() {
 	// Read in File
@@ -98,9 +86,9 @@ func Day_1_Part_2() {
 
 		first_int, second_int := "", ""
 		for i := 0; i < len(txt); i++ {
-			subtext := txt[i:min(i+5, len(txt))]
-			subtext_3 := subtext[0:min(3, len(subtext))]
-			subtext_4 := subtext[0:min(4, len(subtext))]
+			subtext := txt[i:utils.Min(i+5, len(txt))]
+			subtext_3 := subtext[0:utils.Min(3, len(subtext))]
+			subtext_4 := subtext[0:utils.Min(4, len(subtext))]
 
 			first_char := subtext[0:1]
 
@@ -127,9 +115,9 @@ func Day_1_Part_2() {
 		}
 
 		for i := len(txt); i >= 0; i-- {
-			subtext := txt[max(i-5, 0):i]
-			subtext_3 := subtext[max(0, len(subtext)-3):]
-			subtext_4 := subtext[max(0, len(subtext)-4):]
+			subtext := txt[utils.Max(i-5, 0):i]
+			subtext_3 := subtext[utils.Max(0, len(subtext)-3):]
+			subtext_4 := subtext[utils.Max(0, len(subtext)-4):]
 
             last_char := subtext[len(subtext)-1:]
 
