@@ -7,6 +7,16 @@ func Min(a, b int) int {
 	return b
 }
 
+func MinArray(a []int) (i int) {
+    i = a[0]
+    for _, v := range a {
+        if v < i {
+            i = v
+        }
+    }
+    return
+}
+
 func Max(a, b int) int {
 	if a > b {
 		return a
