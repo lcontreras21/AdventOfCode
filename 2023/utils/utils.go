@@ -1,5 +1,7 @@
 package utils
 
+import "math"
+
 func Min(a, b int) int {
 	if a < b {
 		return a
@@ -54,5 +56,11 @@ func Power(base, exp int) (value int) {
         value = base * Power(base, exp - 1)
     }
 
+    return
+}
+
+func QuadraticFormula(a, b, c int) (l, r float64) {
+    l = (float64(-1 * b) + math.Sqrt(float64(Power(b, 2)) - float64(4 * a * c))) / float64(2 * a)
+    r = (float64(-1 * b) - math.Sqrt(float64(Power(b, 2)) - float64(4 * a * c))) / float64(2 * a)
     return
 }

@@ -81,7 +81,7 @@ func find_ranges(ranges [][2]int, m map[[2]int][2]int) (output [][2]int) {
     return
 }
 
-func parse_input() (seeds []string, maps map[string]map[[2]int][2]int) {
+func parse_input_day_5() (seeds []string, maps map[string]map[[2]int][2]int) {
 	file, err := os.Open("inputs/Day_5.txt")
 	// file, err := os.Open("inputs/temp.txt")
 	if err != nil {
@@ -169,7 +169,7 @@ func parse_input() (seeds []string, maps map[string]map[[2]int][2]int) {
 }
 
 func Day_5_Part_1() {
-    seeds, maps := parse_input() 
+    seeds, maps := parse_input_day_5() 
 
 	// Go through the black box
     min := []int{}
@@ -189,7 +189,7 @@ func Day_5_Part_1() {
 }
 
 func Day_5_Part_2() {
-    seeds, maps := parse_input() 
+    seeds, maps := parse_input_day_5() 
 
 	// Go through the black box but less brute-forcey this time
     ranges := [][2]int{}
