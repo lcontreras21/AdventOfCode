@@ -64,3 +64,16 @@ func QuadraticFormula(a, b, c int) (l, r float64) {
     r = (float64(-1 * b) - math.Sqrt(float64(Power(b, 2)) - float64(4 * a * c))) / float64(2 * a)
     return
 }
+
+func QuantifyString(s string) (m map[rune]int) {
+    m = make(map[rune]int)
+    for _, c := range s {
+        _, prs := m[c]
+        if prs {
+            m[c]++
+        } else {
+            m[c] = 1
+        }
+    }
+    return
+}
