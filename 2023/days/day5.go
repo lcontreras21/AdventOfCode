@@ -184,7 +184,7 @@ func Day_5_Part_1() {
         location := find_in_range(humidity, maps["location_map"])
         min = append(min, location)
 	}
-    min_loc := utils.MinArray(min)
+    min_loc, _ := utils.MinArray(min)
     fmt.Println(min_loc)
 }
 

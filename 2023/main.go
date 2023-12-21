@@ -27,5 +27,8 @@ func main() {
     // days.Day_7_Part_2()
 
     // days.Day_8_Part_1()
-    days.Day_8_Part_2()
+    // days.Day_8_Part_2()
+
+    days.Day_9(1)
+    days.Day_9(2)
 }

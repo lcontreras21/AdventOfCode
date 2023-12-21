@@ -11,11 +11,13 @@ func Min(a, b int) int {
 	return b
 }
 
-func MinArray(a []int) (i int) {
-	i = a[0]
-	for _, v := range a {
-		if v < i {
-			i = v
+func MinArray(a []int) (min_value, index int) {
+	min_value = a[0]
+    index = 0
+	for i, value := range a {
+		if value < min_value {
+		    min_value = value
+            index = i
 		}
 	}
 	return
@@ -101,4 +103,41 @@ func LCMMultiple(nums []int) int {
     } else {
         return LeastCommonMultiple(nums[0], LCMMultiple(nums[1:]))
     }
+}
+
+func Diff(nums []int) (diff []int) {
+    for i:=0; i<len(nums) - 1; i++ {
+        diff = append(diff, nums[i+1] - nums[i]) 
+    }
+    return
+}
+
+func All(values []int) (bool) {
+    for _, v := range values {
+        if v == 0 {
+            return false
+        }
+    }
+    return true
+}
+
+func None(values []int) (bool) {
+    for _, v := range values {
+        if v != 0 {
+            return false
+        }
+    }
+    return true
+}
+
+func Sort(values []int) (sorted []int) {
+    i := 0
+    count := len(values)
+    for i < count {
+        min_value, index := MinArray(values)
+        sorted = append(sorted, min_value)
+        values = append(values[:index], values[index+1:]...)
+        i++
+    }
+    return
 }
