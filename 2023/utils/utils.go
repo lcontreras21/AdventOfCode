@@ -1,6 +1,8 @@
 package utils
 
-import "math"
+import (
+	"math"
+)
 
 func Min(a, b int) int {
 	if a < b {
@@ -10,13 +12,13 @@ func Min(a, b int) int {
 }
 
 func MinArray(a []int) (i int) {
-    i = a[0]
-    for _, v := range a {
-        if v < i {
-            i = v
-        }
-    }
-    return
+	i = a[0]
+	for _, v := range a {
+		if v < i {
+			i = v
+		}
+	}
+	return
 }
 
 func Max(a, b int) int {
@@ -40,7 +42,7 @@ func SetIntersection(s1, s2 []string) (inter []string) {
 
 	for _, e := range s2 {
 		// If elements present in the hashmap then append intersection list.
-        _, prs := hash[e]
+		_, prs := hash[e]
 		if prs {
 			inter = append(inter, e)
 		}
@@ -50,30 +52,53 @@ func SetIntersection(s1, s2 []string) (inter []string) {
 }
 
 func Power(base, exp int) (value int) {
-    if exp == 0 {
-        value = 1
-    } else {
-        value = base * Power(base, exp - 1)
-    }
+	if exp == 0 {
+		value = 1
+	} else {
+		value = base * Power(base, exp-1)
+	}
 
-    return
+	return
 }
 
 func QuadraticFormula(a, b, c int) (l, r float64) {
-    l = (float64(-1 * b) + math.Sqrt(float64(Power(b, 2)) - float64(4 * a * c))) / float64(2 * a)
-    r = (float64(-1 * b) - math.Sqrt(float64(Power(b, 2)) - float64(4 * a * c))) / float64(2 * a)
-    return
+	l = (float64(-1*b) + math.Sqrt(float64(Power(b, 2))-float64(4*a*c))) / float64(2*a)
+	r = (float64(-1*b) - math.Sqrt(float64(Power(b, 2))-float64(4*a*c))) / float64(2*a)
+	return
 }
 
 func QuantifyString(s string) (m map[rune]int) {
-    m = make(map[rune]int)
-    for _, c := range s {
-        _, prs := m[c]
-        if prs {
-            m[c]++
-        } else {
-            m[c] = 1
-        }
+	m = make(map[rune]int)
+	for _, c := range s {
+		_, prs := m[c]
+		if prs {
+			m[c]++
+		} else {
+			m[c] = 1
+		}
+	}
+	return
+}
+
+func GreatestCommonDenominator(a, b int) int {
+	for b != 0 {
+		temp := b
+		b = a % b
+		a = temp
+	}
+	return a
+}
+
+func LeastCommonMultiple(a, b int) int {
+	gcd := GreatestCommonDenominator(a, b)
+	prod := a * b
+	return int(math.Floor(float64(prod) / float64(gcd)))
+}
+
+func LCMMultiple(nums []int) int {
+    if len(nums) == 2 {
+        return LeastCommonMultiple(nums[0], nums[1])
+    } else {
+        return LeastCommonMultiple(nums[0], LCMMultiple(nums[1:]))
     }
-    return
 }
