@@ -141,3 +141,10 @@ func Sort(values []int) (sorted []int) {
     }
     return
 }
+
+func Sum(values []int) (total int) {
+    for _, v := range values {
+        total = total + v
+    }
+    return
+}
