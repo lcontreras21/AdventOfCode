@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -13,11 +14,11 @@ func Min(a, b int) int {
 
 func MinArray(a []int) (min_value, index int) {
 	min_value = a[0]
-    index = 0
+	index = 0
 	for i, value := range a {
 		if value < min_value {
-		    min_value = value
-            index = i
+			min_value = value
+			index = i
 		}
 	}
 	return
@@ -98,53 +99,103 @@ func LeastCommonMultiple(a, b int) int {
 }
 
 func LCMMultiple(nums []int) int {
-    if len(nums) == 2 {
-        return LeastCommonMultiple(nums[0], nums[1])
-    } else {
-        return LeastCommonMultiple(nums[0], LCMMultiple(nums[1:]))
-    }
+	if len(nums) == 2 {
+		return LeastCommonMultiple(nums[0], nums[1])
+	} else {
+		return LeastCommonMultiple(nums[0], LCMMultiple(nums[1:]))
+	}
 }
 
 func Diff(nums []int) (diff []int) {
-    for i:=0; i<len(nums) - 1; i++ {
-        diff = append(diff, nums[i+1] - nums[i]) 
-    }
-    return
+	for i := 0; i < len(nums)-1; i++ {
+		diff = append(diff, nums[i+1]-nums[i])
+	}
+	return
 }
 
-func All(values []int) (bool) {
-    for _, v := range values {
-        if v == 0 {
-            return false
-        }
-    }
-    return true
+func All(values []int) bool {
+	for _, v := range values {
+		if v == 0 {
+			return false
+		}
+	}
+	return true
 }
 
-func None(values []int) (bool) {
-    for _, v := range values {
-        if v != 0 {
-            return false
-        }
-    }
-    return true
+func None(values []int) bool {
+	for _, v := range values {
+		if v != 0 {
+			return false
+		}
+	}
+	return true
 }
 
 func Sort(values []int) (sorted []int) {
-    i := 0
-    count := len(values)
-    for i < count {
-        min_value, index := MinArray(values)
-        sorted = append(sorted, min_value)
-        values = append(values[:index], values[index+1:]...)
-        i++
-    }
-    return
+	i := 0
+	count := len(values)
+	for i < count {
+		min_value, index := MinArray(values)
+		sorted = append(sorted, min_value)
+		values = append(values[:index], values[index+1:]...)
+		i++
+	}
+	return
 }
 
 func Sum(values []int) (total int) {
-    for _, v := range values {
-        total = total + v
-    }
+	for _, v := range values {
+		total = total + v
+	}
+	return
+}
+
+func Transpose[T any](matrix [][]T) (transposed [][]T) {
+	// Convert matrix so that columns are now rows
+	for col_i := range matrix[0] {
+		new_row := []T{}
+		for row_i := range matrix {
+			new_row = append(new_row, matrix[row_i][col_i])
+		}
+		transposed = append(transposed, new_row)
+	}
+	return
+}
+
+func CompareArrays[T comparable](a, b []T) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := 0; i < len(a); i++ {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func CompareArraysWithDifference[T comparable](a, b []T) int {
+    difference := 0
+	if len(a) != len(b) {
+        difference = difference + Max(len(a), len(b)) - Min(len(a), len(b))
+	}
+	for i := 0; i < len(a); i++ {
+		if a[i] != b[i] {
+            difference++
+		}
+	}
+	return difference
+}
+
+func PrintMatrix[T any](matrix [][]T) {
+	for _, row := range matrix {
+		fmt.Println(row)
+	}
+}
+
+func Reverse[T any](array []T) (new_array []T) {
+	for i := len(array) - 1; i >= 0; i-- {
+        new_array = append(new_array, array[i])
+	}
     return
 }

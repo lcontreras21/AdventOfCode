@@ -39,5 +39,8 @@ func main() {
     // days.Day_11(1000000)
 
     // days.Day_12_Part_1()
-    days.Day_12_Part_2()
+    // days.Day_12_Part_2()
+
+    days.Day_13_Part_1()
+    days.Day_13_Part_2()
 }
