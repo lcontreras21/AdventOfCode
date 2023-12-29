@@ -9,8 +9,8 @@ import (
 	"strconv"
 )
 
-func parse_file() (map[int][][]int, map[int][]int) {
-	file, err := os.Open("inputs/Day_3.txt")
+func parse_input_day_3() (map[int][][]int, map[int][]int) {
+	file, err := os.Open("inputs/Day_03.txt")
 	// file, err := os.Open("inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
@@ -65,7 +65,7 @@ func parse_file() (map[int][][]int, map[int][]int) {
 }
 
 func Day_3_Part_1() {
-	parts_map, gears_map := parse_file()
+	parts_map, gears_map := parse_input_day_3()
 	total := 0
 
 	// Process Gears
@@ -109,7 +109,7 @@ func Day_3_Part_1() {
 }
 
 func Day_3_Part_2() {
-	parts_map, gears_map := parse_file()
+	parts_map, gears_map := parse_input_day_3()
 
 	total := 0
 	// Process Gears

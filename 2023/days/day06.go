@@ -12,7 +12,7 @@ import (
 )
 
 func parse_input_day_6() (output map[int]int, times, distances []string) {
-	file, err := os.Open("inputs/Day_6.txt")
+	file, err := os.Open("inputs/Day_06.txt")
 	// file, err := os.Open("inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)

@@ -10,7 +10,7 @@ import (
 )
 
 func Day_9_parse_input() (histories [][]int) {
-	file, err := os.Open("inputs/Day_9.txt")
+	file, err := os.Open("inputs/Day_09.txt")
 	// file, err := os.Open("inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)

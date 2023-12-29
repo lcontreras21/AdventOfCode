@@ -10,7 +10,7 @@ import (
 )
 
 func Day_2_Part_1() {
-	file, err := os.Open("inputs/Day_2.txt")
+	file, err := os.Open("inputs/Day_02.txt")
 	// file, err := os.Open("inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
@@ -65,7 +65,7 @@ func Day_2_Part_1() {
 }
 
 func Day_2_Part_2() {
-	file, err := os.Open("inputs/Day_2.txt")
+	file, err := os.Open("inputs/Day_02.txt")
 	// file, err := os.Open("inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
