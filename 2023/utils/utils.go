@@ -5,6 +5,8 @@ import (
 	"math"
 )
 
+// Math Helper Functions
+
 func Min(a, b int) int {
 	if a < b {
 		return a
@@ -29,29 +31,6 @@ func Max(a, b int) int {
 		return a
 	}
 	return b
-}
-
-func RangeOverlap(range_x []int, range_y []int) bool {
-	// to be above parts indexes need to be within range_x - 1 -> range_x + 1
-	// (StartA <= EndB) and (EndA >= StartB)
-	return (range_x[0] <= range_y[1]) && (range_x[1] >= range_y[0])
-}
-
-func SetIntersection(s1, s2 []string) (inter []string) {
-	hash := make(map[string]bool)
-	for _, e := range s1 {
-		hash[e] = true
-	}
-
-	for _, e := range s2 {
-		// If elements present in the hashmap then append intersection list.
-		_, prs := hash[e]
-		if prs {
-			inter = append(inter, e)
-		}
-	}
-
-	return
 }
 
 func Power(base, exp int) (value int) {
@@ -106,6 +85,30 @@ func LCMMultiple(nums []int) int {
 	}
 }
 
+// Array Helper functions
+func RangeOverlap(range_x []int, range_y []int) bool {
+	// to be above parts indexes need to be within range_x - 1 -> range_x + 1
+	// (StartA <= EndB) and (EndA >= StartB)
+	return (range_x[0] <= range_y[1]) && (range_x[1] >= range_y[0])
+}
+
+func SetIntersection(s1, s2 []string) (inter []string) {
+	hash := make(map[string]bool)
+	for _, e := range s1 {
+		hash[e] = true
+	}
+
+	for _, e := range s2 {
+		// If elements present in the hashmap then append intersection list.
+		_, prs := hash[e]
+		if prs {
+			inter = append(inter, e)
+		}
+	}
+
+	return
+}
+
 func Diff(nums []int) (diff []int) {
 	for i := 0; i < len(nums)-1; i++ {
 		diff = append(diff, nums[i+1]-nums[i])
@@ -150,18 +153,6 @@ func Sum(values []int) (total int) {
 	return
 }
 
-func Transpose[T any](matrix [][]T) (transposed [][]T) {
-	// Convert matrix so that columns are now rows
-	for col_i := range matrix[0] {
-		new_row := []T{}
-		for row_i := range matrix {
-			new_row = append(new_row, matrix[row_i][col_i])
-		}
-		transposed = append(transposed, new_row)
-	}
-	return
-}
-
 func CompareArrays[T comparable](a, b []T) bool {
 	if len(a) != len(b) {
 		return false
@@ -175,17 +166,35 @@ func CompareArrays[T comparable](a, b []T) bool {
 }
 
 func CompareArraysWithDifference[T comparable](a, b []T) int {
-    difference := 0
+	difference := 0
 	if len(a) != len(b) {
-        difference = difference + Max(len(a), len(b)) - Min(len(a), len(b))
+		difference = difference + Max(len(a), len(b)) - Min(len(a), len(b))
 	}
 	for i := 0; i < len(a); i++ {
 		if a[i] != b[i] {
-            difference++
+			difference++
 		}
 	}
 	return difference
 }
+
+func Reverse[T any](array []T) (new_array []T) {
+	for i := len(array) - 1; i >= 0; i-- {
+		new_array = append(new_array, array[i])
+	}
+	return
+}
+
+func FindIndex[T comparable](array []T, value T) int {
+    for i, v := range array {
+        if v == value {
+            return i
+        }
+    }
+    return -1
+}
+
+// Matrix Helper Functions
 
 func PrintMatrix[T any](matrix [][]T) {
 	for _, row := range matrix {
@@ -193,9 +202,39 @@ func PrintMatrix[T any](matrix [][]T) {
 	}
 }
 
-func Reverse[T any](array []T) (new_array []T) {
-	for i := len(array) - 1; i >= 0; i-- {
-        new_array = append(new_array, array[i])
+
+func RotateMatrixClockwise[T any](matrix [][]T) (rotated [][]T) {
+	for j := range matrix[0] {
+        new_row := []T{}
+		for i := len(matrix) - 1; i >= 0; i-- {
+			new_row = append(new_row, matrix[i][j])
+		}
+        rotated = append(rotated, new_row)
 	}
     return
+}
+
+func Transpose[T any](matrix [][]T) (transposed [][]T) {
+	// Convert matrix so that columns are now rows
+	for col_i := range matrix[0] {
+		new_row := []T{}
+		for row_i := range matrix {
+			new_row = append(new_row, matrix[row_i][col_i])
+		}
+		transposed = append(transposed, new_row)
+	}
+	return
+}
+
+func CompareMatrix[T comparable](a, b [][]T) bool {
+    if len(a) != len(b) {
+        return false
+    }
+
+    for row_i := 0; row_i < len(a); row_i++ {
+        if !CompareArrays[T](a[row_i], b[row_i]) {
+            return false
+        }
+    }
+    return true
 }
