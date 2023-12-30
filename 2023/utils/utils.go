@@ -194,6 +194,13 @@ func FindIndex[T comparable](array []T, value T) int {
     return -1
 }
 
+func Clone[T any](array []T) (clone []T) {
+    for _, v := range array {
+        clone = append(clone, v)
+    }
+    return  
+}
+
 // Matrix Helper Functions
 
 func PrintMatrix[T any](matrix [][]T) {
