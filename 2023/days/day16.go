@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-type Bearing int64
+type Bearing int
 
 const (
 	North Bearing = iota
