@@ -60,10 +60,10 @@ func hashify_ray(ray Ray) string {
 
 func is_valid_loc(loc [2]int, height, width int) bool {
 	x_pos, y_pos := loc[0], loc[1]
-	if x_pos < 0 || x_pos >= height {
+	if x_pos < 0 || x_pos >= height{
 		return false
 	}
-	if y_pos < 0 || y_pos >= height {
+	if y_pos < 0 || y_pos >= width {
 		return false
 	}
 	return true

@@ -185,7 +185,6 @@ func get_path_for_crucible(city [][]int, go_plus_ultra bool) int {
 	x_end, y_end := len(city)-1, len(city[0])-1
 
 	for len(crucibles) > 0 {
-		fmt.Println(len(crucibles))
 		crucible := crucibles[0]
 		crucibles = crucibles[1:]
 
@@ -211,6 +210,8 @@ func get_path_for_crucible(city [][]int, go_plus_ultra bool) int {
 	// Don't get here :(
 	return -1
 }
+
+// TODO Optimize Part 2s, they currently take 20 - 60  mins to run 
 
 func Day_17_Part_1() {
 	// city := Day_17_parse_input(true)

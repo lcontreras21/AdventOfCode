@@ -54,5 +54,8 @@ func main() {
     // days.Day_16_Part_2()
 
     // days.Day_17_Part_1()
-    days.Day_17_Part_2()
+    // days.Day_17_Part_2()
+
+    // days.Day_18_Part_1()
+    days.Day_18_Part_2()
 }

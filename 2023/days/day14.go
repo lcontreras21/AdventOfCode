@@ -34,7 +34,6 @@ func Day_14_parse_input(use_test_file bool) [][]string {
 
 	file.Close()
 	return output
-
 }
 
 func tilt_landscape_up(landscape [][]string) [][]string {

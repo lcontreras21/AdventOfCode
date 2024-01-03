@@ -7,6 +7,13 @@ import (
 
 // Math Helper Functions
 
+func Abs(a int) int {
+    if a < 0 {
+        a = a * -1
+    }
+    return a
+}
+
 func Min(a, b int) int {
 	if a < b {
 		return a
