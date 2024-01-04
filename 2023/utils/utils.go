@@ -8,10 +8,10 @@ import (
 // Math Helper Functions
 
 func Abs(a int) int {
-    if a < 0 {
-        a = a * -1
-    }
-    return a
+	if a < 0 {
+		a = a * -1
+	}
+	return a
 }
 
 func Min(a, b int) int {
@@ -193,19 +193,26 @@ func Reverse[T any](array []T) (new_array []T) {
 }
 
 func FindIndex[T comparable](array []T, value T) int {
-    for i, v := range array {
-        if v == value {
-            return i
-        }
-    }
-    return -1
+	for i, v := range array {
+		if v == value {
+			return i
+		}
+	}
+	return -1
 }
 
 func Clone[T any](array []T) (clone []T) {
-    for _, v := range array {
-        clone = append(clone, v)
-    }
-    return  
+	for _, v := range array {
+		clone = append(clone, v)
+	}
+	return
+}
+
+func Range(start, end, interval int) (r []int) {
+	for i := start; i < end; i = i + interval {
+        r = append(r, i)
+	}
+    return r
 }
 
 // Matrix Helper Functions
@@ -216,16 +223,15 @@ func PrintMatrix[T any](matrix [][]T) {
 	}
 }
 
-
 func RotateMatrixClockwise[T any](matrix [][]T) (rotated [][]T) {
 	for j := range matrix[0] {
-        new_row := []T{}
+		new_row := []T{}
 		for i := len(matrix) - 1; i >= 0; i-- {
 			new_row = append(new_row, matrix[i][j])
 		}
-        rotated = append(rotated, new_row)
+		rotated = append(rotated, new_row)
 	}
-    return
+	return
 }
 
 func Transpose[T any](matrix [][]T) (transposed [][]T) {
@@ -241,14 +247,14 @@ func Transpose[T any](matrix [][]T) (transposed [][]T) {
 }
 
 func CompareMatrix[T comparable](a, b [][]T) bool {
-    if len(a) != len(b) {
-        return false
-    }
+	if len(a) != len(b) {
+		return false
+	}
 
-    for row_i := 0; row_i < len(a); row_i++ {
-        if !CompareArrays[T](a[row_i], b[row_i]) {
-            return false
-        }
-    }
-    return true
+	for row_i := 0; row_i < len(a); row_i++ {
+		if !CompareArrays[T](a[row_i], b[row_i]) {
+			return false
+		}
+	}
+	return true
 }
