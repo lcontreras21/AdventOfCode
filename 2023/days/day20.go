@@ -1,6 +1,7 @@
 package days
 
 import (
+	"AdventOfCode/utils"
 	"bufio"
 	"fmt"
 	"math"
@@ -218,12 +219,12 @@ func module_in_initial_state(flipflops map[string]FlipFlop, conjunctions map[str
 	return true
 }
 
-func send_pulses(broadcaster BroadCaster, flipflops map[string]FlipFlop, conjunctions map[string]Conjunction, amount int, is_part_two bool) int {
+func send_pulses(broadcaster BroadCaster, flipflops map[string]FlipFlop, conjunctions map[string]Conjunction, amount int, is_part_two bool, stop_at string) int {
 	high_pulses, low_pulses := 0, 0
 	button_pressed_count := 0
 	found_cycle := false
 	for button_pressed_count < amount {
-		fmt.Println("at button press", button_pressed_count)
+		// fmt.Println("at button press", button_pressed_count)
 		queue := []Pulse{}
 
 		// Print out the pulses like the instructions
@@ -241,11 +242,8 @@ func send_pulses(broadcaster BroadCaster, flipflops map[string]FlipFlop, conjunc
 			pulse := queue[0]
 			queue = queue[1:]
 
-			if is_part_two && pulse.dest == "rx" {
-                fmt.Println(pulse)
-            }
-			if is_part_two && pulse.dest == "rx" && pulse.power == Low {
-				fmt.Println("here")
+			if is_part_two && pulse.source == stop_at && pulse.dest == "gf" && pulse.power == High {
+				fmt.Println(pulse.source, button_pressed_count+1)
 				return button_pressed_count + 1
 			}
 
@@ -297,6 +295,23 @@ func send_pulses(broadcaster BroadCaster, flipflops map[string]FlipFlop, conjunc
 	return high_pulses * low_pulses
 }
 
+func reset(flipflops map[string]FlipFlop, conjunctions map[string]Conjunction) (map[string]FlipFlop, map[string]Conjunction) {
+	for name, flipflop := range flipflops {
+		flipflop.on = false
+		flipflops[name] = flipflop
+	}
+
+	for name, conjunction := range conjunctions {
+		sources := map[string]Power{}
+		for source := range conjunction.sources {
+			sources[source] = Low
+		}
+		conjunction.sources = sources
+		conjunctions[name] = conjunction
+	}
+	return flipflops, conjunctions
+}
+
 func Day_20_Part_1() {
 	// broadcaster, flipflops, conjunctions := Day_20_parse_input(true)
 	broadcaster, flipflops, conjunctions := Day_20_parse_input(false)
@@ -304,7 +319,7 @@ func Day_20_Part_1() {
 	// PrintFlipFlopMap(flipflops)
 	// PrintConjunctionMap(conjunctions)
 
-	count := send_pulses(broadcaster, flipflops, conjunctions, 1000, false)
+	count := send_pulses(broadcaster, flipflops, conjunctions, 1000, false, "")
 	fmt.Println(count)
 }
 
@@ -312,6 +327,17 @@ func Day_20_Part_2() {
 	// broadcaster, flipflops, conjunctions := Day_20_parse_input(true)
 	broadcaster, flipflops, conjunctions := Day_20_parse_input(false)
 
-	count := send_pulses(broadcaster, flipflops, conjunctions, 1e9, true)
-	fmt.Println(count)
+	zs := send_pulses(broadcaster, flipflops, conjunctions, 1e9, true, "zs")
+	flipflops, conjunctions = reset(flipflops, conjunctions)
+	kr := send_pulses(broadcaster, flipflops, conjunctions, 1e9, true, "kr")
+	flipflops, conjunctions = reset(flipflops, conjunctions)
+	kf := send_pulses(broadcaster, flipflops, conjunctions, 1e9, true, "kf")
+	flipflops, conjunctions = reset(flipflops, conjunctions)
+	qk := send_pulses(broadcaster, flipflops, conjunctions, 1e9, true, "qk")
+	flipflops, conjunctions = reset(flipflops, conjunctions)
+
+	fmt.Println("zs", zs, "kr", kr, "kf", kf, "qk", qk)
+
+	lcm := utils.LCMMultiple([]int{zs, kr, kf, qk})
+	fmt.Println(lcm)
 }
