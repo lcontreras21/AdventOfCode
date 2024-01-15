@@ -7,6 +7,14 @@ import (
 
 // Math Helper Functions
 
+func ModLikePython(d, m int) int {
+   var res int = d % m
+   if ((res < 0 && m > 0) || (res > 0 && m < 0)) {
+      return res + m
+   }
+   return res
+}
+
 func Abs(a int) int {
 	if a < 0 {
 		a = a * -1

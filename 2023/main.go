@@ -63,5 +63,20 @@ func main() {
     // days.Day_19_Part_2()
 
     // days.Day_20_Part_1()
-    days.Day_20_Part_2()
+    // days.Day_20_Part_2()
+
+    // days.Day_21_Part_1()
+    days.Day_21_Part_2()
+
+    // days.Day_22_Part_1()
+    // days.Day_22_Part_2()
+
+    // days.Day_23_Part_1()
+    // days.Day_23_Part_2()
+
+    // days.Day_24_Part_1()
+    // days.Day_24_Part_2()
+
+    // days.Day_25_Part_1()
+    // days.Day_25_Part_2()
 }
