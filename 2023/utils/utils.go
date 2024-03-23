@@ -8,11 +8,11 @@ import (
 // Math Helper Functions
 
 func ModLikePython(d, m int) int {
-   var res int = d % m
-   if ((res < 0 && m > 0) || (res > 0 && m < 0)) {
-      return res + m
-   }
-   return res
+	var res int = d % m
+	if (res < 0 && m > 0) || (res > 0 && m < 0) {
+		return res + m
+	}
+	return res
 }
 
 func Abs(a int) int {
@@ -98,6 +98,11 @@ func LCMMultiple(nums []int) int {
 	} else {
 		return LeastCommonMultiple(nums[0], LCMMultiple(nums[1:]))
 	}
+}
+
+func ToChar(i int) string {
+    r := rune('A' - 1 + i)
+    return fmt.Sprintf("%q", r)
 }
 
 // Array Helper functions
@@ -218,9 +223,42 @@ func Clone[T any](array []T) (clone []T) {
 
 func Range(start, end, interval int) (r []int) {
 	for i := start; i < end; i = i + interval {
-        r = append(r, i)
+		r = append(r, i)
 	}
-    return r
+	return r
+}
+
+func RangeInclusive(start, end, interval int) (r []int) {
+	for i := start; i <= end; i = i + interval {
+		r = append(r, i)
+	}
+	return r
+}
+
+func CartesianProduct[T any](args ...[]T) chan []T {
+	c := make(chan []T)
+	if len(args) == 0 {
+		close(c)
+		return c // Return a safe value for nil/empty params.
+	}
+	go func() {
+		iterate(c, args[0], []T{}, args[1:]...)
+		close(c)
+	}()
+
+	return c
+}
+
+func iterate[T any](channel chan []T, topLevel, result []T, needUnpacking ...[]T) {
+	if len(needUnpacking) == 0 {
+		for _, p := range topLevel {
+			channel <- append(append([]T{}, result...), p)
+		}
+		return
+	}
+	for _, p := range topLevel {
+		iterate(channel, needUnpacking[0], append(result, p), needUnpacking[1:]...)
+	}
 }
 
 // Matrix Helper Functions
