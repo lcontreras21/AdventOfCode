@@ -1,6 +1,7 @@
 package days
 
 import (
+	"AdventOfCode/models"
 	"AdventOfCode/utils"
 	"bufio"
 	"fmt"
@@ -10,38 +11,28 @@ import (
 	"strings"
 )
 
-type Coord struct {
-	x int
-	y int
-	z int
-}
-
-func (c Coord) String() string {
-	return fmt.Sprintf("[%d, %d, %d]", c.x, c.y, c.z)
-}
-
 type Brick struct {
-	start   Coord
-	end     Coord
+	start   models.Coord
+	end     models.Coord
 	settled bool
 }
 
 func (b Brick) String() string {
-	return Coord.String(b.start) + " - " + Coord.String(b.end)
+	return models.Coord.String(b.start) + " - " + models.Coord.String(b.end)
 }
 
-func (b *Brick) can_fall(occupied map[Coord]int) bool {
+func (b *Brick) can_fall(occupied map[models.Coord]int) bool {
 	// Ground at z = 0
-	above_ground := b.start.z > 1
+	above_ground := b.start.Z > 1
 
-	x_range := utils.RangeInclusive(b.start.x, b.end.x, 1)
-	y_range := utils.RangeInclusive(b.start.y, b.end.y, 1)
+	x_range := utils.RangeInclusive(b.start.X, b.end.X, 1)
+	y_range := utils.RangeInclusive(b.start.Y, b.end.Y, 1)
 
 	c := utils.CartesianProduct[int](x_range, y_range)
 
 	is_occupied := false
 	for obj := range c {
-		pos := Coord{x: obj[0], y: obj[1], z: b.start.z - 1}
+		pos := models.Coord{X: obj[0], Y: obj[1], Z: b.start.Z - 1}
 		_, contained := occupied[pos]
 		if contained {
 			is_occupied = contained
@@ -52,16 +43,16 @@ func (b *Brick) can_fall(occupied map[Coord]int) bool {
 	return above_ground && !is_occupied
 }
 
-func (b *Brick) fall(occupied map[Coord]int) {
+func (b *Brick) fall(occupied map[models.Coord]int) {
 	for b.can_fall(occupied) {
-		b.start.z -= 1
-		b.end.z -= 1
+		b.start.Z -= 1
+		b.end.Z -= 1
 	}
 }
 
 func brick_from_loc(start_loc, end_loc [3]int) Brick {
-	start_coord := Coord{x: start_loc[0], y: start_loc[1], z: start_loc[2]}
-	end_coord := Coord{x: end_loc[0], y: end_loc[1], z: end_loc[2]}
+	start_coord := models.Coord{X: start_loc[0], Y: start_loc[1], Z: start_loc[2]}
+	end_coord := models.Coord{X: end_loc[0], Y: end_loc[1], Z: end_loc[2]}
 	new_brick := Brick{start: start_coord, end: end_coord}
 	return new_brick
 }
@@ -107,7 +98,7 @@ func Day_22_parse_input(use_test_file bool) (bricks []Brick) {
 
 func sort_bricks(bricks []Brick) []Brick {
 	sort.Slice(bricks, func(i, j int) bool {
-		return bricks[i].start.z < bricks[j].start.z
+		return bricks[i].start.Z < bricks[j].start.Z
 	})
 
 	return bricks
@@ -120,26 +111,26 @@ func settle_bricks(bricks []Brick) (settled_bricks []Brick, above, below map[int
 	//      If (a) and the intercepted brick is not settled then add it to queue
 	//      If (b) mark it as settled
 	bricks = sort_bricks(bricks)
-	occupied := map[Coord]int{}
+	occupied := map[models.Coord]int{}
 	above = map[int]map[int]bool{}
 	below = map[int]map[int]bool{}
 
 	for i, brick := range bricks {
 		brick.fall(occupied)
 
-		// Add in every Coord that the brick occupies to the occupied map
-		x_range := utils.RangeInclusive(brick.start.x, brick.end.x, 1)
-		y_range := utils.RangeInclusive(brick.start.y, brick.end.y, 1)
-		z_range := utils.RangeInclusive(brick.start.z, brick.end.z, 1)
+		// Add in every models.Coord that the brick occupies to the occupied map
+		x_range := utils.RangeInclusive(brick.start.X, brick.end.X, 1)
+		y_range := utils.RangeInclusive(brick.start.Y, brick.end.Y, 1)
+		z_range := utils.RangeInclusive(brick.start.Z, brick.end.Z, 1)
 
 		c := utils.CartesianProduct(x_range, y_range)
 		for obj := range c {
 			for _, z := range z_range {
-				coord := Coord{x: obj[0], y: obj[1], z: z}
+				coord := models.Coord{X: obj[0], Y: obj[1], Z: z}
 				occupied[coord] = i
 			}
 
-			below_coord := Coord{x: obj[0], y: obj[1], z: brick.start.z - 1}
+			below_coord := models.Coord{X: obj[0], Y: obj[1], Z: brick.start.Z - 1}
 			below_index, is_occupied := occupied[below_coord]
 			if is_occupied {
 				above_set, above_exists := above[below_index]

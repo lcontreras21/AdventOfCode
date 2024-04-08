@@ -28,7 +28,7 @@ func (m *Matrix[T]) Data() [][]T {
     return m.data
 }
 
-func (m *Matrix[T]) AddRow(at_index, amount int) {
+func (m *Matrix[T]) AddEmptyRow(at_index, amount int) {
 	if m.rows == 0 && m.cols == 0 {
 		m.data = append(m.data, []T{})
 		m.rows++
@@ -42,22 +42,45 @@ func (m *Matrix[T]) AddRow(at_index, amount int) {
 
 	for i := 0; i < amount; i++ {
 		if at_index == len(m.data) {
-			m.data = append(m.data, utils.Clone[T](new_row))
+			m.data = append(m.data, utils.Clone(new_row))
 		} else {
 			m.data = append(m.data[:at_index+1], m.data[at_index:]...)
-			m.data[at_index] = utils.Clone[T](new_row)
+			m.data[at_index] = utils.Clone(new_row)
 		}
 	}
     m.rows = m.rows + amount
 }
 
-func (m *Matrix[T]) AddColumn(at_index, amount int) {
+func (m *Matrix[T]) AddRow(at_index int, rows ...[]T) {
+	if m.rows == 0 && m.cols == 0 {
+        for _, row := range(rows) {
+            m.data = append(m.data, row)
+        }
+		m.rows = m.rows + len(rows)
+        m.cols = len(rows[0])
+		return
+	}
+
+    for _, row := range(rows) {
+		if at_index == len(m.data) {
+			m.data = append(m.data, row)
+		} else {
+			m.data = append(m.data[:at_index+1], m.data[at_index:]...)
+			m.data[at_index] = row 
+            at_index++
+		}
+    }
+    m.rows = m.rows + len(rows) 
+}
+
+func (m *Matrix[T]) AddEmptyColumn(at_index, amount int) {
 	if m.rows == 0 && m.cols == 0 {
 		m.data = append(m.data, []T{[1]T{}[0]})
 		m.rows++
 		m.cols++
 		return
 	}
+
 	for row_i := range m.data {
 		for i := 0; i < amount; i++ {
 			if at_index == m.cols {
@@ -71,9 +94,53 @@ func (m *Matrix[T]) AddColumn(at_index, amount int) {
     m.cols = m.cols + amount
 }
 
+func (m *Matrix[T]) AddColumn(at_index int, cols ...[]T) {
+	if m.rows == 0 && m.cols == 0 {
+        for range(cols) {
+            m.data = append(m.data, []T{})
+        }
+        for _, col := range(cols) {
+            for row_i, cell := range(col) {
+                m.data[row_i] = append(m.data[row_i], cell)
+            }
+        }
+		m.rows = len(cols)
+		m.cols = len(cols[0])
+		return
+	}
+
+
+    for _, col := range(cols) {
+        for row_i, cell := range(col) {
+			if at_index == m.cols {
+				m.data[row_i] = append(m.data[row_i], cell)
+			} else {
+				m.data[row_i] = append(m.data[row_i][:at_index+1], m.data[row_i][at_index:]...)
+				m.data[row_i][at_index] = cell
+			}
+        }
+    }
+}
+
 func (m *Matrix[T]) Get(row_i, col_i int) (v T) {
 	if (row_i >= 0 && row_i < len(m.data)) && (col_i >= 0 && col_i < len(m.data[0])) {
 		v = m.data[row_i][col_i]
+	}
+	return
+}
+
+func (m *Matrix[T]) GetRow(row_i int) (v []T) {
+	if row_i >= 0 && row_i < len(m.data) {
+		v = m.data[row_i]
+	}
+	return
+}
+
+func (m *Matrix[T]) GetColumn(col_i int) (v []T) {
+	if col_i >= 0 && col_i < len(m.data[0]) {
+        for row_i := 0; row_i < m.rows; row_i++ {
+            v = append(v, m.Get(row_i, col_i))
+        }
 	}
 	return
 }
@@ -92,4 +159,12 @@ func (m Matrix[T]) String() string {
 		k = k + fmt.Sprintf("%03d", i) + " - " + fmt.Sprintln(row)
 	}
 	return k
+}
+
+func (m *Matrix[T]) Clone() Matrix[T] {
+    cloned := Matrix[T]{}
+    for row_i, row := range(m.data) {
+        cloned.AddRow(row_i, utils.Clone(row))
+    }
+    return cloned 
 }

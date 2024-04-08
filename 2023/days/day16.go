@@ -18,6 +18,21 @@ const (
 	West
 )
 
+func (b Bearing) String() string {
+    to_string := ""
+    switch b {
+    case North:
+        to_string =  "North"
+    case South:
+        to_string =  "South"
+    case East:
+        to_string =  "East"
+    case West:
+        to_string =  "West"
+    }
+    return to_string
+}
+
 type Ray struct {
 	loc [2]int
 	dir Bearing

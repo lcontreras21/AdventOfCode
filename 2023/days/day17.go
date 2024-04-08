@@ -135,7 +135,7 @@ func get_possible_crucibles(city [][]int, crucible Crucible) (moved []Crucible) 
 
 		// Update Path
 		hashed := hashify_crucible(crucible)
-		updated.path = utils.Clone[string](updated.path)
+		updated.path = utils.Clone(updated.path)
 		updated.path = append(updated.path, hashed)
 
 		moved = append(moved, updated)

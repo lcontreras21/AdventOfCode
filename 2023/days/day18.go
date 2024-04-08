@@ -72,7 +72,7 @@ func move_loc(loc [2]int, dir Bearing, amount int) [2]int {
 
 func follow_digsteps(digsteps []DigStep) (ground models.Matrix[string], points [][2]int) {
 	ground.SetNilValue(".")
-	ground.AddColumn(0, 1)
+	ground.AddEmptyColumn(0, 1)
 	ground.Set(0, 0, "#")
 
 	curr_loc := [2]int{0, 0}
@@ -82,14 +82,14 @@ func follow_digsteps(digsteps []DigStep) (ground models.Matrix[string], points [
 
 			if !is_valid_loc(curr_loc, ground.Rows(), ground.Cols()) {
 				if digstep.dir == North {
-					ground.AddRow(0, 1)
+					ground.AddEmptyRow(0, 1)
 					curr_loc[0] = 0
 				} else if digstep.dir == South {
-					ground.AddRow(ground.Rows(), 1)
+					ground.AddEmptyRow(ground.Rows(), 1)
 				} else if digstep.dir == East {
-					ground.AddColumn(ground.Cols(), 1)
+					ground.AddEmptyColumn(ground.Cols(), 1)
 				} else { // West
-					ground.AddColumn(0, 1)
+					ground.AddEmptyColumn(0, 1)
 					curr_loc[1] = 0
 				}
 			}
