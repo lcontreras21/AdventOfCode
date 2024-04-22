@@ -168,3 +168,22 @@ func (m *Matrix[T]) Clone() Matrix[T] {
     }
     return cloned 
 }
+
+func (m *Matrix[T]) AppendVertical(o Matrix[T]) {
+    // Both must have same row length
+    for i := 0; i < o.Rows(); i++ {
+        m.AddRow(m.Rows(), o.GetRow(i))
+    }
+}
+
+func (m *Matrix[T]) AppendHorizontal(o Matrix[T]) {
+    // Both must have same col length
+    for i := 0; i < o.Rows(); i++ {
+        m.data[i] = append(m.data[i], o.GetRow(i)...)
+    }
+}
+
+func (m *Matrix[T]) ToArray() ([][]T) {
+    return m.data
+}
+
