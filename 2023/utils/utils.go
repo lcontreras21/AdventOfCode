@@ -41,6 +41,18 @@ func MinArray(a []int) (min_value, index int) {
 	return
 }
 
+func MaxArray(a []int) (max_value, index int) {
+	max_value = a[0]
+	index = 0
+	for i, value := range a {
+		if value > max_value {
+			max_value = value
+			index = i
+		}
+	}
+	return
+}
+
 func Max(a, b int) int {
 	if a > b {
 		return a

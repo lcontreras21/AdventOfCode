@@ -28,10 +28,14 @@ func (s *Set[T]) Append(item T) bool {
 }
 
 func (s Set[T]) String() string {
-	k := ""
-	for _, i := range s.items {
-		k = k + fmt.Sprint(i)
+	k := "{"
+	for i, v := range s.items {
+        if i != 0 {
+            k = k + ", "
+        }
+		k = k + fmt.Sprint(v)
 	}
+    k = k + "}"
 	return k
 }
 
@@ -45,5 +49,23 @@ func (s *Set[T]) Length() int {
 }
 
 func (s *Set[T]) Contains(item T) bool {
-    return utils.FindIndex(s.items, item) >= 1
+    return utils.FindIndex(s.items, item) >= 0
+}
+
+func (s *Set[T]) ToArray() []T {
+    return s.items
+}
+
+func (s *Set[T]) Difference(o Set[T]) []T {
+    diff := []T{}
+    for _, n := range(s.items) {
+        if !o.Contains(n) {
+            diff = append(diff, n)
+        }
+    }
+    return diff
+}
+
+func (s *Set[T]) Pop(index int) {
+    s.items = append(s.items[:index], s.items[index+1:]...)
 }
