@@ -76,9 +76,9 @@ type Record struct {
 func Day_12_parse_input(test int) (records []Record) {
     var filename string
     if test != 0 {
-        filename = "inputs/Day_12.txt"
+        filename = "2023/inputs/Day_12.txt"
     } else {
-        filename = "inputs/temp.txt"
+        filename = "2023/inputs/temp.txt"
     }
 	file, err := os.Open(filename)
 	if err != nil {

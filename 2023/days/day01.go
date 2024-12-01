@@ -12,7 +12,7 @@ import (
 
 func Day_1_Part_1() {
 	// Read in File
-	file, err := os.Open("inputs/Day_01.txt")
+	file, err := os.Open("2023/inputs/Day_01.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -46,8 +46,8 @@ func Day_1_Part_2() {
 	// read in a character, if first character is [0-9] mark as first int, continue otherwise
 	// read in a character from right
 
-	file, err := os.Open("inputs/Day_01.txt")
-	// file, err := os.Open("inputs/temp.txt")
+	file, err := os.Open("2023/inputs/Day_01.txt")
+	// file, err := os.Open("2023/inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
 	}

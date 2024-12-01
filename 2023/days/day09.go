@@ -10,8 +10,8 @@ import (
 )
 
 func Day_9_parse_input() (histories [][]int) {
-	file, err := os.Open("inputs/Day_09.txt")
-	// file, err := os.Open("inputs/temp.txt")
+	file, err := os.Open("2023/inputs/Day_09.txt")
+	// file, err := os.Open("2023/inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -52,7 +52,7 @@ func extrapolate_forwards(sequences [][]int) (nv int) {
 	return
 }
 
-func Day_9(part int) {
+func Day_9_Part_1() {
 	histories := Day_9_parse_input()
 
 	total := 0
@@ -67,12 +67,30 @@ func Day_9(part int) {
 			}
 			history = diff
 		}
-		fn := extrapolate_forwards
-		if part == 2 {
-			fn = extrapolate_backwards
+
+		num := extrapolate_forwards(sequences)
+		total = total + num
+	}
+	fmt.Println(total)
+}
+
+func Day_9_Part_2() {
+	histories := Day_9_parse_input()
+
+	total := 0
+	for _, history := range histories {
+		done := 0
+		sequences := [][]int{history}
+		for done < 1 {
+			diff := utils.Diff(history)
+			sequences = append(sequences, diff)
+			if utils.None(diff) {
+				break
+			}
+			history = diff
 		}
 
-		num := fn(sequences)
+		num := extrapolate_backwards(sequences)
 		total = total + num
 	}
 	fmt.Println(total)

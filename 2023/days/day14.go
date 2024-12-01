@@ -11,9 +11,9 @@ import (
 func Day_14_parse_input(use_test_file bool) [][]string {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_14.txt"
+		filename = "2023/inputs/Day_14.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {

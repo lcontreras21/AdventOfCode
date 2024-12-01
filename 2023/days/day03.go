@@ -10,8 +10,8 @@ import (
 )
 
 func parse_input_day_3() (map[int][][]int, map[int][]int) {
-	file, err := os.Open("inputs/Day_03.txt")
-	// file, err := os.Open("inputs/temp.txt")
+	file, err := os.Open("2023/inputs/Day_03.txt")
+	// file, err := os.Open("2023/inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
 	}

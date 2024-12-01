@@ -27,9 +27,9 @@ func (d *DigStep) FromColor() DigStep {
 func Day_18_parse_input(use_test_file bool) (steps []DigStep) {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_18.txt"
+		filename = "2023/inputs/Day_18.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {

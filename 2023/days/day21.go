@@ -17,9 +17,9 @@ type Pos struct {
 func Day_21_parse_input(use_test_file bool) (output [][]string, start [2]int) {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_21.txt"
+		filename = "2023/inputs/Day_21.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {

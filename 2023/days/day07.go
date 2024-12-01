@@ -137,8 +137,8 @@ func insert_hand(hands []Day_7_hand, hand Day_7_hand, part int) (new_hands []Day
 }
 
 func parse_input_day_7(part int) (hands []Day_7_hand) {
-	file, err := os.Open("inputs/Day_07.txt")
-	// file, err := os.Open("inputs/temp.txt")
+	file, err := os.Open("2023/inputs/Day_07.txt")
+	// file, err := os.Open("2023/inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
 	}

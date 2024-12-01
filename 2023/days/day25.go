@@ -59,9 +59,9 @@ func (g Graph) String() string {
 func Day_25_parse_input(use_test_file bool) (Graph) {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_25.txt"
+		filename = "2023/inputs/Day_25.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {
@@ -128,4 +128,8 @@ func Day_25_Part_1() {
     nodes := graph.Nodes()
     diff := nodes.Difference(S)
     fmt.Println("Product of the two groups sizes is: ", S.Length() * len(diff))
+}
+
+func Day_25_Part_2() {
+    fmt.Println("Merry Christmas!!")
 }

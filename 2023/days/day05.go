@@ -82,8 +82,8 @@ func find_ranges(ranges [][2]int, m map[[2]int][2]int) (output [][2]int) {
 }
 
 func parse_input_day_5() (seeds []string, maps map[string]map[[2]int][2]int) {
-	file, err := os.Open("inputs/Day_05.txt")
-	// file, err := os.Open("inputs/temp.txt")
+	file, err := os.Open("2023/inputs/Day_05.txt")
+	// file, err := os.Open("2023/inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
 	}

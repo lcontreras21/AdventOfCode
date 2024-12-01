@@ -21,9 +21,9 @@ type Trail struct {
 func Day_23_parse_input(use_test_file bool) (hiking_map models.Matrix[string], start, end models.Coord)  {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_23.txt"
+		filename = "2023/inputs/Day_23.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {

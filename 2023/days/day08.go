@@ -20,8 +20,8 @@ type Day_8_start struct {
 }
 
 func Day_8_parse_input() (paths map[string]Day_8_path, directions string, ghosts []Day_8_start) {
-	file, err := os.Open("inputs/Day_08.txt")
-	// file, err := os.Open("inputs/temp.txt")
+	file, err := os.Open("2023/inputs/Day_08.txt")
+	// file, err := os.Open("2023/inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
 	}

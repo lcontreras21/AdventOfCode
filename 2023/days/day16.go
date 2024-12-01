@@ -46,9 +46,9 @@ const (
 func Day_16_parse_input(use_test_file bool) (input [][]string) {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_16.txt"
+		filename = "2023/inputs/Day_16.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {

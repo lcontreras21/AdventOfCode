@@ -22,9 +22,9 @@ func (h Hailstone) String() string {
 func Day_24_parse_input(use_test_file bool) (hailstones []Hailstone, min, max float64)  {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_24.txt"
+		filename = "2023/inputs/Day_24.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {

@@ -67,9 +67,9 @@ func PrintConjunctionMap(m map[string]Conjunction) {
 func Day_20_parse_input(use_test_file bool) (broadcaster BroadCaster, flipflops map[string]FlipFlop, conjunctions map[string]Conjunction) {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_20.txt"
+		filename = "2023/inputs/Day_20.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {

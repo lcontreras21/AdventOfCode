@@ -81,8 +81,8 @@ func contains_tile(t Tile, tiles []Tile) bool {
 }
 
 func Day_10_parse_input() (input [][]Node, start [2]int) {
-	// file, err := os.Open("inputs/Day_10.txt")
-	file, err := os.Open("inputs/temp.txt")
+	// file, err := os.Open("2023/inputs/Day_10.txt")
+	file, err := os.Open("2023/inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
 	}

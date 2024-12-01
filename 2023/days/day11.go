@@ -8,8 +8,8 @@ import (
 )
 
 func Day_11_parse_input() (image [][]string) {
-	// file, err := os.Open("inputs/Day_11.txt")
-	file, err := os.Open("inputs/temp.txt")
+	// file, err := os.Open("2023/inputs/Day_11.txt")
+	file, err := os.Open("2023/inputs/temp.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -144,7 +144,7 @@ func get_galaxy_coordinates(image [][]string) (coordinates [][2]int) {
 	return
 }
 
-func Day_11(grav_expansion_const int) {
+func do_work(grav_expansion_const int) {
 	image := Day_11_parse_input()
 	locs := gravitational_effects(image)
 	galaxy_coords := get_galaxy_coordinates(image)
@@ -157,4 +157,12 @@ func Day_11(grav_expansion_const int) {
 		}
 	}
 	fmt.Println(total)
+}
+
+func Day_11_Part_1() {
+    do_work(2)
+}
+
+func Day_11_Part_2() {
+    do_work(1000000)
 }

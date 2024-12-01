@@ -21,9 +21,9 @@ type Crucible struct {
 func Day_17_parse_input(use_test_file bool) (city [][]int) {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_17.txt"
+		filename = "2023/inputs/Day_17.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {

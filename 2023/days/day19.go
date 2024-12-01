@@ -30,9 +30,9 @@ type Part struct {
 func Day_19_parse_input(use_test_file bool) (workflows map[string]Workflow, parts []Part) {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_19.txt"
+		filename = "2023/inputs/Day_19.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {

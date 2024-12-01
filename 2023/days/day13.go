@@ -24,9 +24,9 @@ func print_patterns(patterns []Pattern) {
 func Day_13_parse_input(use_test_file bool) (patterns []Pattern) {
 	var filename string
 	if !use_test_file {
-		filename = "inputs/Day_13.txt"
+		filename = "2023/inputs/Day_13.txt"
 	} else {
-		filename = "inputs/temp.txt"
+		filename = "2023/inputs/temp.txt"
 	}
 	file, err := os.Open(filename)
 	if err != nil {
