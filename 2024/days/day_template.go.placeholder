@@ -7,9 +7,14 @@ import (
 )
 
 
-func Day_0_Parse_Input() {
-	// Read in File
-	file, err := os.Open("inputs/FILENAME.txt")
+func Day_XX_parse_input(use_test_file bool) () {
+	var filename string
+	if !use_test_file {
+		filename = "202X/inputs/Day_XX.txt"
+	} else {
+		filename = "202X/inputs/temp.txt"
+	}
+	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -17,13 +22,11 @@ func Day_0_Parse_Input() {
 	fileScanner := bufio.NewScanner(file)
 	fileScanner.Split(bufio.ScanLines)
 
-	total := 0
 	for fileScanner.Scan() {
 		txt := fileScanner.Text()
         fmt.Println(txt)
 	}
 
-	fmt.Println(total)
 	file.Close()
 }
 

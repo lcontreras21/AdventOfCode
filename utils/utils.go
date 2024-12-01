@@ -273,6 +273,14 @@ func iterate[T any](channel chan []T, topLevel, result []T, needUnpacking ...[]T
 	}
 }
 
+func Occurrences[T comparable](l []T) map[T]int {
+    dict := make(map[T]int)
+    for _ , num :=  range l {
+        dict[num] = dict[num] + 1
+    }
+    return dict
+}
+
 // Matrix Helper Functions
 
 func PrintMatrix[T any](matrix [][]T) {
