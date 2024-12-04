@@ -8,8 +8,8 @@ func GetMapping() map[string]func() {
     mapping["02_1"] = Day_2_Part_1
     mapping["02_2"] = Day_2_Part_2
 
-    // mapping["03_1"] = Day_3_Part_1
-    // mapping["03_2"] = Day_3_Part_2
+    mapping["03_1"] = Day_3_Part_1
+    mapping["03_2"] = Day_3_Part_2
     //
     // mapping["04_1"] = Day_4_Part_1
     // mapping["04_2"] = Day_4_Part_2

@@ -7,7 +7,7 @@ import (
 )
 
 
-func Day_XX_parse_input(use_test_file bool) () {
+func day_XX_parse_input(use_test_file bool) () {
 	var filename string
 	if !use_test_file {
 		filename = "202X/inputs/Day_XX.txt"
@@ -30,8 +30,12 @@ func Day_XX_parse_input(use_test_file bool) () {
 	file.Close()
 }
 
-func Day_0_Part_1() {
+func Day_X_Part_1() {
+	// _ := day_XX_parse_input(true)
+	// _ := day_XX_parse_input(false)
 }
 
-func Day_0_Part_2() {
+func Day_X_Part_2() {
+	// _ := day_XX_parse_input(true)
+	// _ := day_XX_parse_input(false)
 }
