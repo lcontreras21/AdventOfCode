@@ -10,9 +10,9 @@ func GetMapping() map[string]func() {
 
     mapping["03_1"] = Day_3_Part_1
     mapping["03_2"] = Day_3_Part_2
-    //
-    // mapping["04_1"] = Day_4_Part_1
-    // mapping["04_2"] = Day_4_Part_2
+
+    mapping["04_1"] = Day_4_Part_1
+    mapping["04_2"] = Day_4_Part_2
     //
     // mapping["05_1"] = Day_5_Part_1
     // mapping["05_2"] = Day_5_Part_2

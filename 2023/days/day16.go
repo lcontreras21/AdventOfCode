@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// TODO: move Bearing usage to models
 type Bearing int
 
 const (
