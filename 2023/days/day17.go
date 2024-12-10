@@ -11,7 +11,7 @@ import (
 
 type Crucible struct {
 	loc      [2]int
-	dir      Bearing // from day16 TODO move to separate struct file?
+	dir      Bearing
 	movement int
 	cost     int
 	path     []string

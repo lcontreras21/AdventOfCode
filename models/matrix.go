@@ -187,3 +187,15 @@ func (m *Matrix[T]) ToArray() ([][]T) {
     return m.data
 }
 
+
+func (m *Matrix[T]) IsValidCell(loc Coord) bool {
+    height, width := m.Rows(), m.Cols()
+	x_pos, y_pos := loc.X, loc.Y
+	if x_pos < 0 || x_pos >= height {
+		return false
+	}
+	if y_pos < 0 || y_pos >= width {
+		return false
+	}
+	return true
+}

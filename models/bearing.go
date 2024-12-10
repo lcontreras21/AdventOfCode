@@ -67,3 +67,18 @@ func MoveCoord(loc Coord, dir Bearing, amount int) Coord {
 	}
 	return loc
 }
+
+func (b Bearing) TurnClockwiseBy90() Bearing {
+	turned := North 
+	switch b {
+	case North:
+        turned = East
+	case South:
+        turned = West 
+	case East:
+        turned = South 
+	case West:
+        turned = North 
+	}
+	return turned 
+}
